@@ -1,6 +1,5 @@
 
 import Model
-from random import randint
 
 
 class AI:
@@ -8,7 +7,6 @@ class AI:
     destination_reached = False
     destinations_reached = []
     hero_to_act_number = 0
-    hero_to_move_number = 0
 
     def preprocess(self, world):
         print("preprocess")
@@ -36,14 +34,12 @@ class AI:
                 self.destinations_reached[a] = True
         self.destination_reached = all(self.destinations_reached)
         if not self.destination_reached:
-            while self.destinations_reached[self.hero_to_move_number]:
-                self.hero_to_move_number += 1
-                self.hero_to_move_number %= 4
-            hero_to_move = world.my_heroes[self.hero_to_move_number]
-            destination = world.map.objective_zone[self.hero_to_move_number]
-            world.move_hero(hero=hero_to_move, direction=world.get_path_move_directions(start_cell=hero_to_move.current_cell, end_cell=destination)[0])
-            self.hero_to_move_number += 1
-            self.hero_to_move_number %= 4
+            for a in range(4):
+                if not self.destinations_reached[a]:
+                    destination = world.map.objective_zone[a]
+                    hero_to_move = world.my_heroes[a]
+                    start = hero_to_move.current_cell
+                    world.move_hero(hero=hero_to_move, direction=world.get_path_move_directions(start_cell=start, end_cell=destination)[0])
 
     def action(self, world):
         print("action")
