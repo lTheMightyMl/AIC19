@@ -5,18 +5,15 @@ from random import randint
 
 class AI:
 
-    dirs = []
-    dodge_finished = False
-    dodges_finished = []
+    destination_reached = False
+    destinations_reached = []
     hero_to_act_number = 0
     hero_to_move_number = 0
-    p = 0
 
     def preprocess(self, world):
         print("preprocess")
         for a in range(4):
-            self.dirs.append(world.get_path_move_directions(start_cell=world.map.my_respawn_zone[a], end_cell=world.map.objective_zone[a]))
-            self.dodges_finished.append(False)
+            self.destinations_reached.append(False)
 
     def pick(self, world):
         print("pick")
@@ -34,18 +31,31 @@ class AI:
 
     def move(self, world):
         print("move")
+        for a in range(4):
+            if world.map.objective_zone[a] == world.my_heroes[a].current_cell:
+                self.destinations_reached[a] = True
+        self.destination_reached = all(self.destinations_reached)
+        if not self.destination_reached:
+            while self.destinations_reached[self.hero_to_move_number]:
+                self.hero_to_move_number += 1
+                self.hero_to_move_number %= 4
+            hero_to_move = world.my_heroes[self.hero_to_move_number]
+            destination = world.map.objective_zone[self.hero_to_move_number]
+            world.move_hero(hero=hero_to_move, direction=world.get_path_move_directions(start_cell=hero_to_move.current_cell, end_cell=destination)[0])
+            self.hero_to_move_number += 1
+            self.hero_to_move_number %= 4
 
     def action(self, world):
         print("action")
-        if not self.dodge_finished:
-            while self.dodges_finished[self.hero_to_act_number]:
+        for a in range(4):
+            if world.map.objective_zone[a] == world.my_heroes[a].current_cell:
+                self.destinations_reached[a] = True
+        self.destination_reached = all(self.destinations_reached)
+        if not self.destination_reached:
+            while self.destinations_reached[self.hero_to_act_number]:
                 self.hero_to_act_number += 1
                 self.hero_to_act_number %= 4
             hero_to_act = world.my_heroes[self.hero_to_act_number]
-            destination = world.map.objective_zone[self.hero_to_act_number]
-            world.cast_ability(hero=hero_to_act, ability=hero_to_act.dodge_abilities[0], cell=destination)
-            if destination == hero_to_act.current_cell:
-                self.dodges_finished[self.hero_to_act_number] = True
-            self.dodge_finished = all(self.dodges_finished)
+            world.cast_ability(hero=hero_to_act, ability=hero_to_act.dodge_abilities[0], cell=world.map.objective_zone[self.hero_to_act_number])
             self.hero_to_act_number += 1
             self.hero_to_act_number %= 4
