@@ -29,17 +29,17 @@ class AI:
 
     def move(self, world):
         print("move")
-        # for a in range(4):
-        #     if world.map.objective_zone[a] == world.my_heroes[a].current_cell:
-        #         self.destinations_reached[a] = True
-        # self.destination_reached = all(self.destinations_reached)
-        # if not self.destination_reached:
-        #     for a in range(4):
-        #         if not self.destinations_reached[a]:
-        #             destination = world.map.objective_zone[a]
-        #             hero_to_move = world.my_heroes[a]
-        #             start = hero_to_move.current_cell
-        #             world.move_hero(hero=hero_to_move, direction=world.get_path_move_directions(start_cell=start, end_cell=destination)[0])
+        for a in range(4):
+            if world.map.objective_zone[a] == world.my_heroes[a].current_cell:
+                self.destinations_reached[a] = True
+        self.destination_reached = all(self.destinations_reached)
+        if not self.destination_reached:
+            for a in range(4):
+                if not self.destinations_reached[a]:
+                    destination = world.map.objective_zone[a]
+                    hero_to_move = world.my_heroes[a]
+                    start = hero_to_move.current_cell
+                    world.move_hero(hero=hero_to_move, direction=world.get_path_move_directions(start_cell=start, end_cell=destination)[0])
 
     def action(self, world):
         print("action")
