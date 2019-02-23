@@ -5,6 +5,7 @@ class AI:
 
     far = []
     destination = []
+    has_attacked = []
     my_hero_number = 0
     near = []
     wait = []
@@ -30,8 +31,7 @@ class AI:
             mark_far.append(temp_far)
             mark_near.append(temp_near)
         for a in range(4):
-            self.wait.append(0)
-            self.waiting_time.append(0)
+            self.has_attacked.append(False)
             for objective_cell in world.map.objective_zone:
                 if not mark_far[objective_cell.row][objective_cell.column]:
                     self.far.append(objective_cell)
@@ -69,7 +69,6 @@ class AI:
     def move(self, world):
         print("move")
         for a in range(4):
-            self.waiting_time[a] = self.longest_cooldown(world.my_heroes[a])
             if self.destination[a] == world.my_heroes[a].current_cell:
                 if self.destination[a] == self.far[a]:
                     self.destination[a] = self.near[a]
@@ -105,7 +104,6 @@ class AI:
     def action(self, world):
         print("action")
         for a in range(4):
-            self.waiting_time[a] = self.longest_cooldown(world.my_heroes[a])
             if self.destination[a] == world.my_heroes[a].current_cell:
                 if self.destination[a] == self.far[a]:
                     self.destination[a] = self.near[a]

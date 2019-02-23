@@ -8,6 +8,8 @@ class AI:
     has_attacked = []
     my_hero_number = 0
     near = []
+    wait = []
+    waiting_time = []
 
     def longest_cooldown(self, hero):
         ret = 0
