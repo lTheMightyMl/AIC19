@@ -5,14 +5,19 @@ class AI:
 
     far = []
     destination = []
-    destination_reached = []
+    has_attacked = []
     my_hero_number = 0
     near = []
 
+    def longest_cooldown(self, hero):
+        ret = 0
+        for ability in hero.abilities:
+            if ability.cooldown > ret:
+                ret = ability.cooldown
+        return ret
+
     def preprocess(self, world):
         print("preprocess")
-        for a in range(4):
-            self.destination_reached.append(False)
         mark_far = []
         mark_near = []
         for row in range(world.map.row_num):
@@ -24,6 +29,7 @@ class AI:
             mark_far.append(temp_far)
             mark_near.append(temp_near)
         for a in range(4):
+            self.has_attacked.append(False)
             for objective_cell in world.map.objective_zone:
                 if not mark_far[objective_cell.row][objective_cell.column]:
                     self.far.append(objective_cell)
@@ -62,17 +68,17 @@ class AI:
         print("move")
         for a in range(4):
             if self.destination[a] == world.my_heroes[a].current_cell:
-                self.destination_reached[a] = True
-            else:
-                self.destination_reached[a] = False
+                if self.destination[a] == self.far[a]:
+                    self.destination[a] = self.near[a]
+                else:
+                    self.destination[a] = self.far[a]
         for a in range(4):
             hero_to_move = world.my_heroes[a]
-            if hero_to_move.current_hp <= 0:
+            destination = self.destination[a]
+            if hero_to_move.current_hp <= 0 or world.ap < hero_to_move.move_ap_cost or destination == hero_to_move.current_cell:
                 continue
-            if not self.destination_reached[a]:
-                destination = self.destination[a]
-                start = hero_to_move.current_cell
-                world.move_hero(hero=hero_to_move, direction=world.get_path_move_directions(start_cell=start, end_cell=destination)[0])
+            start = hero_to_move.current_cell
+            world.move_hero(hero=hero_to_move, direction=world.get_path_move_directions(start_cell=start, end_cell=destination)[0])
 
     def ok(self, world, cell):
         for hero in world.my_heroes:
@@ -97,16 +103,17 @@ class AI:
         print("action")
         for a in range(4):
             if self.destination[a] == world.my_heroes[a].current_cell:
-                self.destination_reached[a] = True
-            else:
-                self.destination_reached[a] = False
+                if self.destination[a] == self.far[a]:
+                    self.destination[a] = self.near[a]
+                else:
+                    self.destination[a] = self.far[a]
         for a in range(4):
             my_hero = world.my_heroes[a]
             if my_hero.current_hp <= 0:
                 continue
             destination = self.destination[a]
             dodge = my_hero.dodge_abilities[0]
-            if not self.destination_reached[a] and dodge.is_ready and self.ok(world, world.get_impact_cell(ability=dodge, start_cell=my_hero.current_cell, target_cell=destination)) and world.ap >= dodge.ap_cost:
+            if my_hero.current_cell != destination and dodge.is_ready and self.ok(world, world.get_impact_cell(ability=dodge, start_cell=my_hero.current_cell, target_cell=destination)) and world.ap >= dodge.ap_cost:
                 world.cast_ability(hero=my_hero, ability=dodge, cell=destination)
                 world.ap -= dodge.ap_cost
             else:
