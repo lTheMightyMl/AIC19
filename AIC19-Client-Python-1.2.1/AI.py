@@ -74,4 +74,22 @@ class AI:
                     hero_to_act = world.my_heroes[a]
                     world.cast_ability(hero=hero_to_act, ability=hero_to_act.dodge_abilities[0], cell=self.destination[a])
         else:
-            pass
+            if world.opp_heroes[0].current_cell.column == -1 and world.opp_heroes[0].current_cell.row == -1:
+                pass
+            else:
+                nearest_opp = []
+                for a in range(4):
+                    nearest_opp.append(world.opp_heroes[0])
+                for a in range(4):
+                    for b in range(len(world.opp_heroes)):
+                        if world.opp_heroes[b].current_hp <= 0:
+                            continue
+                        my_hero_cell = world.my_heroes[a].current_cell
+                        if(world.manhattan_distance(start_cell=my_hero_cell, end_cell=world.opp_heroes[b]) < world.manhattan_distance(start_cell=my_hero_cell, end_cell=nearest_opp[a])):
+                            nearest_opp[a] = world.opp_heroes[b]
+                    if nearest_opp[a].current_hp > 0:
+                        for attack in world.my_heroes[a].offensive_abilities:
+                            if attack.is_ready:
+                                world.cast_ability(hero=world.my_heroes[a], ability=attack, cell=nearest_opp[a].current_cell)
+                                break
+
