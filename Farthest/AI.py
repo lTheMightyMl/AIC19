@@ -133,7 +133,7 @@ class AI:
                         offensive_abilities = my_hero.offensive_abilities
                         for b in range(len(offensive_abilities) - 1, -1, -1):
                             attack = offensive_abilities[b]
-                            if attack.range < world.manhattan_distance(start_cell=my_hero_cell, end_cell=nearest_opp.current_cell) or not attack.is_ready:
+                            if attack.range < world.manhattan_distance(start_cell=my_hero_cell, end_cell=nearest_opp.current_cell) or not attack.is_ready or world.ap < attack.ap_cost:
                                 continue
                             world.cast_ability(hero=my_hero, ability=attack, cell=nearest_opp.current_cell)
                             world.ap -= attack.ap_cost

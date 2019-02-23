@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="442af177-63d9-4c31-b034-e8c6b9e4f207" name="Default Changelist" comment="" />
+    <list default="true" id="442af177-63d9-4c31-b034-e8c6b9e4f207" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../graphic.log" beforeDir="false" afterPath="$PROJECT_DIR$/../graphic.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../view.html" beforeDir="false" afterPath="$PROJECT_DIR$/../view.html" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -9,7 +12,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/Farthest$Controller.coverage" NAME="Controller Coverage Results" MODIFIED="1550951239808" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Farthest$Controller.coverage" NAME="Controller Coverage Results" MODIFIED="1550952336211" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/AIC19_Client_Python_1_2_1$Controller.coverage" NAME="Controller Coverage Results" MODIFIED="1550928278182" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FileEditorManager">
@@ -17,8 +20,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/AI.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1050">
-              <caret line="70" selection-start-line="70" selection-end-line="70" />
+            <state>
+              <caret lean-forward="true" />
             </state>
           </provider>
         </entry>
@@ -131,12 +134,12 @@
       <workItem from="1550925309396" duration="32000" />
       <workItem from="1550925342409" duration="15000" />
       <workItem from="1550925371534" duration="1437000" />
-      <workItem from="1550929573727" duration="11848000" />
+      <workItem from="1550929573727" duration="12073000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13552000" />
+    <option name="totallyTimeSpent" value="13777000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="6" />
@@ -180,8 +183,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/AI.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1050">
-          <caret line="70" selection-start-line="70" selection-end-line="70" />
+        <state>
+          <caret lean-forward="true" />
         </state>
       </provider>
     </entry>
