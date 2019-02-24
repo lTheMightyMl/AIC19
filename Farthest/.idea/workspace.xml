@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="442af177-63d9-4c31-b034-e8c6b9e4f207" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/AI.py" beforeDir="false" afterPath="$PROJECT_DIR$/AI.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Nearest/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Nearest/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Nearest/AI.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Nearest/AI.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../graphic.log" beforeDir="false" afterPath="$PROJECT_DIR$/../graphic.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server_view.log" beforeDir="false" afterPath="$PROJECT_DIR$/../server_view.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../view.html" beforeDir="false" afterPath="$PROJECT_DIR$/../view.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -23,7 +19,11 @@
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/AI.py">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="563">
+              <caret line="52" column="43" selection-start-line="52" selection-start-column="43" selection-end-line="52" selection-end-column="43" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -135,12 +135,12 @@
       <workItem from="1550925309396" duration="32000" />
       <workItem from="1550925342409" duration="15000" />
       <workItem from="1550925371534" duration="1437000" />
-      <workItem from="1550929573727" duration="13673000" />
+      <workItem from="1550929573727" duration="14067000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15377000" />
+    <option name="totallyTimeSpent" value="15771000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="6" />
@@ -183,7 +183,11 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/AI.py">
-      <provider selected="true" editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="563">
+          <caret line="52" column="43" selection-start-line="52" selection-start-column="43" selection-end-line="52" selection-end-column="43" />
+        </state>
+      </provider>
     </entry>
   </component>
 </project>
