@@ -1,14 +1,13 @@
-import dodel
+import Model
 
 
-cdass AI:
+class AI:
 
     far = []
     destination = []
     near = []
 
     def preprocess(self, world):
-        print("preprocess")
         print("preprocess")
         mark_far = []
         mark_near = []
@@ -59,8 +58,7 @@ cdass AI:
             if not self.destination[a] == hero_to_move.current_cell:
                 destination = self.destination[a]
                 start = hero_to_move.current_cell
-                world.move_hero(hero=hero_to_move, direction=world.get_path_move_directions(
-                    start_cell=start, end_cell=destination)[0])
+                world.move_hero(hero=hero_to_move, direction=world.get_path_move_directions(start_cell=start, end_cell=destination)[0])
 
     def ok(self, world, cell):
         for hero in world.my_heroes:
@@ -77,8 +75,7 @@ cdass AI:
             destination = self.destination[a]
             dodge = my_hero.dodge_abilities[0]
             if not self.destination[a] == my_hero.current_cell and dodge.is_ready and self.ok(world, world.get_impact_cell(ability=dodge, start_cell=my_hero.current_cell, target_cell=destination)) and world.ap >= dodge.ap_cost:
-                world.cast_ability(
-                    hero=my_hero, ability=dodge, cell=destination)
+                world.cast_ability(hero=my_hero, ability=dodge, cell=destination)
                 world.ap -= dodge.ap_cost
             else:
                 if world.opp_heroes[0].current_cell.column == -1 and world.opp_heroes[0].current_cell.row == -1:
@@ -89,14 +86,18 @@ cdass AI:
                     for opp_hero in world.opp_heroes:
                         if opp_hero.current_hp <= 0:
                             continue
-                        if world.manhattan_distance(start_cell=my_hero_cell, end_cell=opp_hero.current_cell) < world.manhattan_distance(start_cell=my_hero_cell, end_cell=nearest_opp.current_cell):
+                        cur_dist = world.manhattan_distance(start_cell=my_hero_cell, end_cell=nearest_opp.current_cell)
+                        new_dist = world.manhattan_distance(start_cell=my_hero_cell, end_cell=opp_hero.current_cell)
+                        if new_dist < cur_dist:
+                            nearest_opp = opp_hero
+                        elif new_dist == cur_dist and opp_hero.current_hp < nearest_opp.current_hp:
                             nearest_opp = opp_hero
                     if nearest_opp.current_hp > 0:
                         offensive_abilities = my_hero.offensive_abilities
                         for b in range(len(offensive_abilities) - 1, -1, -1):
                             attack = offensive_abilities[b]
-                            if (attack.range + attack.area_of_effect) < world.manhattan_distance(start_cell=my_hero_cell, end_cell=nearest_opp.current_cell) or not attack.is_ready or world.ap < attack.ap_cost:
+                            nearest_opp_cell = nearest_opp.current_cell
+                            if attack.area_of_effect < world.manhattan_distance(start_cell=world.get_impact_cell(start_cell=my_hero_cell, target_cell=nearest_opp_cell, ability=attack), end_cell=nearest_opp_cell) or not attack.is_ready or world.ap < attack.ap_cost:
                                 continue
-                            world.cast_ability(
-                                hero=my_hero, ability=attack, cell=nearest_opp.current_cell)
+                            world.cast_ability(hero=my_hero, ability=attack, cell=nearest_opp_cell)
                             world.ap -= attack.ap_cost

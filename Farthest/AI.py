@@ -87,13 +87,18 @@ class AI:
                     for opp_hero in world.opp_heroes:
                         if opp_hero.current_hp <= 0:
                             continue
-                        if world.manhattan_distance(start_cell=my_hero_cell, end_cell=opp_hero.current_cell) < world.manhattan_distance(start_cell=my_hero_cell, end_cell=nearest_opp.current_cell):
+                        cur_dist = world.manhattan_distance(start_cell=my_hero_cell, end_cell=nearest_opp.current_cell)
+                        new_dist = world.manhattan_distance(start_cell=my_hero_cell, end_cell=opp_hero.current_cell)
+                        if new_dist < cur_dist:
+                            nearest_opp = opp_hero
+                        elif new_dist == cur_dist and opp_hero.current_hp < nearest_opp.current_hp:
                             nearest_opp = opp_hero
                     if nearest_opp.current_hp > 0:
                         offensive_abilities = my_hero.offensive_abilities
                         for b in range(len(offensive_abilities) - 1, -1, -1):
                             attack = offensive_abilities[b]
-                            if (attack.range + attack.area_of_effect) < world.manhattan_distance(start_cell=my_hero_cell, end_cell=nearest_opp.current_cell) or not attack.is_ready or world.ap < attack.ap_cost:
+                            nearest_opp_cell = nearest_opp.current_cell
+                            if attack.area_of_effect < world.manhattan_distance(start_cell=world.get_impact_cell(start_cell=my_hero_cell, target_cell=nearest_opp_cell, ability=attack), end_cell=nearest_opp_cell) or not attack.is_ready or world.ap < attack.ap_cost:
                                 continue
-                            world.cast_ability(hero=my_hero, ability=attack, cell=nearest_opp.current_cell)
+                            world.cast_ability(hero=my_hero, ability=attack, cell=nearest_opp_cell)
                             world.ap -= attack.ap_cost
