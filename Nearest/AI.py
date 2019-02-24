@@ -6,7 +6,6 @@ class AI:
     far = []
     destination = []
     has_attacked = []
-    my_hero_number = 0
     near = []
     wait = []
     waiting_time = []
@@ -31,22 +30,22 @@ class AI:
             mark_far.append(temp_far)
             mark_near.append(temp_near)
         for a in range(4):
-            self.has_attacked.append(False)
             for objective_cell in world.map.objective_zone:
-                if not mark_far[objective_cell.row][objective_cell.column]:
+                if len(self.far) == a and not mark_far[objective_cell.row][objective_cell.column]:
                     self.far.append(objective_cell)
-                    break
-            for objective_cell in world.map.objective_zone:
-                if not mark_near[objective_cell.row][objective_cell.column]:
+                if len(self.near) == a and not mark_near[objective_cell.row][objective_cell.column]:
                     self.near.append(objective_cell)
+                if len(self.near) > a and len(self.far) > a:
                     break
             source = world.map.my_respawn_zone[a]
             for objective_cell in world.map.objective_zone:
-                if not mark_far[objective_cell.row][objective_cell.column]:
-                    if len(world.get_path_move_directions(start_cell=source, end_cell=objective_cell)) > len(world.get_path_move_directions(start_cell=source, end_cell=self.far[a])):
+                new_len = len(world.get_path_move_directions(start_cell=source, end_cell=objective_cell))
+                cur_len = len(world.get_path_move_directions(start_cell=source, end_cell=self.far[a]))
+                if new_len > cur_len:
+                    if not mark_far[objective_cell.row][objective_cell.column]:
                         self.far[a] = objective_cell
-                if not mark_near[objective_cell.row][objective_cell.column]:
-                    if len(world.get_path_move_directions(start_cell=source, end_cell=objective_cell)) < len(world.get_path_move_directions(start_cell=source, end_cell=self.near[a])):
+                elif new_len < cur_len:
+                    if not mark_near[objective_cell.row][objective_cell.column]:
                         self.near[a] = objective_cell
             mark_far[self.far[a].row][self.far[a].column] = True
             mark_near[self.near[a].row][self.near[a].column] = True
@@ -133,7 +132,7 @@ class AI:
                         offensive_abilities = my_hero.offensive_abilities
                         for b in range(len(offensive_abilities) - 1, -1, -1):
                             attack = offensive_abilities[b]
-                            if attack.range < world.manhattan_distance(start_cell=my_hero_cell, end_cell=nearest_opp.current_cell) or not attack.is_ready:
+                            if attack.range < world.manhattan_distance(start_cell=my_hero_cell, end_cell=nearest_opp.current_cell) or not attack.is_ready or world.ap < attack.ap_cost:
                                 continue
                             world.cast_ability(hero=my_hero, ability=attack, cell=nearest_opp.current_cell)
                             world.ap -= attack.ap_cost

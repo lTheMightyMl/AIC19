@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="442af177-63d9-4c31-b034-e8c6b9e4f207" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AI.py" beforeDir="false" afterPath="$PROJECT_DIR$/AI.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Nearest/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Nearest/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../graphic.log" beforeDir="false" afterPath="$PROJECT_DIR$/../graphic.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server_view.log" beforeDir="false" afterPath="$PROJECT_DIR$/../server_view.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../view.html" beforeDir="false" afterPath="$PROJECT_DIR$/../view.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,8 +24,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/AI.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret lean-forward="true" />
+            <state relative-caret-position="-50">
+              <caret line="14" column="37" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="37" />
             </state>
           </provider>
         </entry>
@@ -41,6 +45,7 @@
     <findStrings>
       <find>nearest_opp</find>
       <find>print</find>
+      <find>ap_cost</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -134,12 +139,12 @@
       <workItem from="1550925309396" duration="32000" />
       <workItem from="1550925342409" duration="15000" />
       <workItem from="1550925371534" duration="1437000" />
-      <workItem from="1550929573727" duration="12073000" />
+      <workItem from="1550929573727" duration="13051000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13777000" />
+    <option name="totallyTimeSpent" value="14755000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="6" />
@@ -150,7 +155,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49919224" visible="true" weight="0.32739726" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49919224" weight="0.32739726" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -183,8 +188,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/AI.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret lean-forward="true" />
+        <state relative-caret-position="-50">
+          <caret line="14" column="37" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="37" />
         </state>
       </provider>
     </entry>
