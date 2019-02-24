@@ -40,11 +40,12 @@ class AI:
             source = world.map.my_respawn_zone[a]
             for objective_cell in world.map.objective_zone:
                 new_len = len(world.get_path_move_directions(start_cell=source, end_cell=objective_cell))
-                cur_len = len(world.get_path_move_directions(start_cell=source, end_cell=self.far[a]))
-                if new_len > cur_len:
+                far_len = len(world.get_path_move_directions(start_cell=source, end_cell=self.far[a]))
+                near_len = len(world.get_path_move_directions(start_cell=source, end_cell=self.near[a]))
+                if new_len > far_len:
                     if not mark_far[objective_cell.row][objective_cell.column]:
                         self.far[a] = objective_cell
-                elif new_len < cur_len:
+                elif new_len < near_len:
                     if not mark_near[objective_cell.row][objective_cell.column]:
                         self.near[a] = objective_cell
             mark_far[self.far[a].row][self.far[a].column] = True
